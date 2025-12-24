@@ -1,0 +1,23 @@
+<div>
+  <h2>Lista de Productos</h2>
+  <ul *ngIf="!loading && productos.length > 0">
+    <li *ngFor="let product of productos">
+      <div>
+        <h3>{{ product.nombre }}</h3>
+        <span>Precio Original: ${{ product.precio }}</span>
+        <br />
+        <span
+          >Precio con Descuento:{{ porcentajeDescuento }}% off
+          <strong> ${{ product.precio | descuento : porcentajeDescuento }} </strong>
+        </span>
+
+        <button (click)="deleteProducto(product.id)">Eliminar</button>
+      </div>
+    </li>
+  </ul>
+  <button (click)="reset()">reset</button>
+  <button (click)="addProducto()">Agregar producto</button>
+</div>
+
+<!-- ///mehjorar los servicios para que se puedad agregar prodcutops //mejorar el dise;o de la pagian
+para que sea mas amigable //agregar mas datos al mock y filtrarlos (extra ) -->
