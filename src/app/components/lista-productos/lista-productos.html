@@ -1,22 +1,42 @@
-<div>
+<div class="contenedorGeneral">
   <h2>Lista de Productos</h2>
-  <ul *ngIf="!loading && productos.length > 0">
-    <li *ngFor="let product of productos">
-      <div>
-        <h3>{{ product.nombre }}</h3>
-        <span>Precio Original: ${{ product.precio }}</span>
-        <br />
-        <span
-          >Precio con Descuento:{{ porcentajeDescuento }}% off
-          <strong> ${{ product.precio | descuento : porcentajeDescuento }} </strong>
-        </span>
+  <button class="botones" (click)="agregarProducto = !agregarProducto">Nuevo</button>
+  <div class="ListaProductos">
+    <ul *ngIf="!loading && productos.length > 0">
+      <li *ngFor="let product of productos">
+        <div class="productoItem">
+          <h3>{{ product.nombre }}</h3>
+          <img src="{{ product.imagenUrl }}" alt="{{ product.nombre }}" />
+          <span
+            >Precio Original: <br />
+            <del> ${{ product.precio }} </del>
+          </span>
+          <span
+            >Precio con Descuento:{{ porcentajeDescuento }}% off <br />
+            <strong> ${{ product.precio | descuento : porcentajeDescuento }} </strong>
+          </span>
 
-        <button (click)="deleteProducto(product.id)">Eliminar</button>
-      </div>
-    </li>
-  </ul>
-  <button (click)="reset()">reset</button>
-  <button (click)="addProducto()">Agregar producto</button>
+          <button (click)="deleteProducto(product.id)">Eliminar</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <button class="botones" (click)="reset()">RESET</button>
+  <form class="form" *ngIf="agregarProducto" (ngSubmit)="addProductoForm()">
+    <h2>Nuevo producto</h2>
+    <label>Nombre:</label>
+    <input type="text" [(ngModel)]="nuevoProducto.nombre" name="nombre" required />
+    <label> Precio</label>
+    <input type="number" [(ngModel)]="nuevoProducto.precio" name="precio" required />
+    <label> Descripcion</label>
+    <input type="text" [(ngModel)]="nuevoProducto.descripcion" name="descripcion" required />
+    <label> Imagen URL</label>
+    <input type="text" [(ngModel)]="nuevoProducto.imagenUrl" name="imagenUrl" required />
+    <label> Fecha de Alta</label>
+    <input type="date" [(ngModel)]="nuevoProducto.fechaAlta" name="fechaAlta" />
+    <button class="botones" type="submit">Agregar Producto</button>
+    <button class="botones" (click)="agregarProducto = false">Cancelar</button>
+  </form>
 </div>
 
 <!-- ///mehjorar los servicios para que se puedad agregar prodcutops //mejorar el dise;o de la pagian

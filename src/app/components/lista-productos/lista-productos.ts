@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { ProductoInterface } from '../../Models/productos.model';
 import { Subscription } from 'rxjs';
 import { ProductosService } from '../../services/productos';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { DescuentoPipe } from '../../pipes/descuento-pipe';
 import { ProductosMock } from '../../Mock/Productos.mock';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-lista-productos',
-  imports: [CommonModule, DescuentoPipe],
+  imports: [CommonModule, DescuentoPipe, FormsModule, NgIf],
   templateUrl: './lista-productos.html',
   styleUrl: './lista-productos.css',
 })
@@ -32,14 +33,39 @@ export class ListaProductos {
     this.productosService.deleteProducto(id);
   }
 
-  addProducto() {
+  nuevoProducto = {
+    nombre: '',
+    precio: 0,
+    descripcion: '',
+    imagenUrl: '',
+    fechaAlta: '',
+  };
+  addProductoForm() {
+    if (
+      !this.nuevoProducto.nombre ||
+      this.nuevoProducto.precio <= 0 ||
+      !this.nuevoProducto.descripcion
+    ) {
+      alert('completa todos los campos ');
+    }
     this.productosService.addProducto({
-      nombre: 'Nuevo Producto',
-      precio: 19999,
-      descripcion: 'Descripción del nuevo producto',
-      imagenUrl: 'https://picsum.photos/300/300?random=4',
-      fechaAlta: new Date().toISOString(),
+      nombre: this.nuevoProducto.nombre,
+      precio: this.nuevoProducto.precio,
+      descripcion: this.nuevoProducto.descripcion,
+      imagenUrl:
+        this.nuevoProducto.imagenUrl ||
+        'https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg',
+      fechaAlta: this.nuevoProducto.fechaAlta.toString() || new Date().toISOString(),
     });
+
+    this.nuevoProducto = {
+      nombre: '',
+      precio: 0,
+      descripcion: '',
+      imagenUrl: '',
+      fechaAlta: '',
+    };
+    this.agregarProducto = false;
   }
 
   reset() {
