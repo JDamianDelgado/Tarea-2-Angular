@@ -1,59 +1,52 @@
-# Tarea2
+# ANGULAR INTERMEDIO - MODULO 1 UNIDAD 3
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+Este proyecto corresponde a la **unidad 3 del Modulo 1** de la diplomatura Full Stack.
+Aqui se creo en Angular una pagina donde se utilizo **servicios** y **pipes** para la visualizacion de datos locales.
 
-## Development server
+---
 
-To start a local development server, run:
+## Como ver el proyecto
 
-```bash
-ng serve
+1. Clonar repositorio
+
+```
+ git clone https://github.com/JDamianDelgado/Tarea-2-Angular.git
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+2. Instalar dependencias
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+3. Ejecutar el Proyecto
 
-```bash
-ng generate --help
+```
+npm run start
 ```
 
-## Building
+El proyecto debe correr en 'http://localhost:4200/' por defecto
 
-To build the project run:
+## Autor
 
-```bash
-ng build
-```
+Nombre: Joaquín Damián Delgado
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Curso: Diplomatura Full Stack
 
-## Running unit tests
+Unidad: Módulo 1 – Unidad 3
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Fecha: Diciembre 2025
 
-```bash
-ng test
-```
+## Capturas
 
-## Running end-to-end tests
+### Pantalla Principal
 
-For end-to-end (e2e) testing, run:
+![alt yes](./public/pantallaPrincipal.png)
 
-```bash
-ng e2e
-```
+### Creacion de producto
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+![alt yes](./public/nuevoProducto.png)
 
-## Additional Resources
+### Vista de productos
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![alt yes](./public/eliminarProducto.png)

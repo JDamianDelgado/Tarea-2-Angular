@@ -80,7 +80,6 @@ export const ProductosMock = [
     fechaAlta: '2024-10-10',
   },
 
-  // 🔽 NUEVOS PRODUCTOS
   {
     id: 11,
     nombre: 'Parlante Bluetooth',

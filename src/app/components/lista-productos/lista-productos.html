@@ -2,7 +2,7 @@
   <h2>Lista de Productos</h2>
   <button class="botones" (click)="agregarProducto = !agregarProducto">Nuevo</button>
   <div class="ListaProductos">
-    <ul *ngIf="!loading && productos.length > 0">
+    <ul *ngIf="!loading && productos.length > 0; else sinProductos">
       <li *ngFor="let product of productos">
         <div class="productoItem">
           <h3>{{ product.nombre }}</h3>
@@ -10,17 +10,34 @@
           <span
             >Precio Original: <br />
             <del> ${{ product.precio }} </del>
+            <br />
+            <del> USD${{ product.precio | currency : cotizacionDolar }}</del>
           </span>
           <span
-            >Precio con Descuento:{{ porcentajeDescuento }}% off <br />
-            <strong> ${{ product.precio | descuento : porcentajeDescuento }} </strong>
+            >Precio con Descuento:
+            <br />
+            <strong> {{ porcentajeDescuento }}% off </strong>
+            <br />
+            <strong>ARG ${{ product.precio | descuento : porcentajeDescuento }} </strong>
+            <br />
+            <strong> USD ${{ product.precio | currency : cotizacionDolar }} </strong>
           </span>
 
+          <small
+            >Oferta valida hasta el
+            <br />
+            {{ product.fechaAlta | diasOferta : diasOferta }}
+          </small>
+          <br />
           <button (click)="deleteProducto(product.id)">Eliminar</button>
         </div>
       </li>
     </ul>
   </div>
+
+  <ng-template #sinProductos>
+    <p>No hay productos para mostrar</p>
+  </ng-template>
   <button class="botones" (click)="reset()">RESET</button>
   <form class="form" *ngIf="agregarProducto" (ngSubmit)="addProductoForm()">
     <h2>Nuevo producto</h2>
@@ -38,6 +55,3 @@
     <button class="botones" (click)="agregarProducto = false">Cancelar</button>
   </form>
 </div>
-
-<!-- ///mehjorar los servicios para que se puedad agregar prodcutops //mejorar el dise;o de la pagian
-para que sea mas amigable //agregar mas datos al mock y filtrarlos (extra ) -->

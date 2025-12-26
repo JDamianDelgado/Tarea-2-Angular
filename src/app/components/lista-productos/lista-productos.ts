@@ -4,12 +4,13 @@ import { Subscription } from 'rxjs';
 import { ProductosService } from '../../services/productos';
 import { CommonModule, NgIf } from '@angular/common';
 import { DescuentoPipe } from '../../pipes/descuento-pipe';
-import { ProductosMock } from '../../Mock/Productos.mock';
 import { FormsModule } from '@angular/forms';
+import { CurrencyArgToUsdPipe } from '../../pipes/currency-pipe';
+import { OfertaPipe } from '../../pipes/date-pipe';
 
 @Component({
   selector: 'app-lista-productos',
-  imports: [CommonModule, DescuentoPipe, FormsModule, NgIf],
+  imports: [CommonModule, DescuentoPipe, FormsModule, NgIf, CurrencyArgToUsdPipe, OfertaPipe],
   templateUrl: './lista-productos.html',
   styleUrl: './lista-productos.css',
 })
@@ -18,6 +19,8 @@ export class ListaProductos {
   loading: boolean = true;
   agregarProducto: boolean = false;
   porcentajeDescuento: number = 10;
+  cotizacionDolar = 1425;
+  diasOferta = 10;
   private subscription?: Subscription;
 
   constructor(private productosService: ProductosService) {}

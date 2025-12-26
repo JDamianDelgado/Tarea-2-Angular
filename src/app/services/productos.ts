@@ -40,6 +40,7 @@ export class ProductosService {
 
   reset() {
     this.productosSubject.next([...ProductosMock]);
-    this.nextId = Math.max(...ProductosMock.map((product) => product.id)) + 1;
+
+    this.nextId = Math.max(...ProductosMock.map((product: ProductoInterface) => product.id)) + 1;
   }
 }
